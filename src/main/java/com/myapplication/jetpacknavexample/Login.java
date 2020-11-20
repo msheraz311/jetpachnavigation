@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences("register", MODE_PRIVATE);
                /* userdetail = preferences.getString(user + userpassword + "data", "Username or password is Incorrect");
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("display", userdetail);
+                editor.putString("display", userdetail);j
                 editor.commit();*/
 
                usernameregister = preferences.getString("username","");
