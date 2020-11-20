@@ -1,5 +1,6 @@
 package com.myapplication.jetpacknavexample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,22 +11,24 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link FirstFragment#newInstance} factory method to
- * create an instance of this fragment.
+
  */
 public class FirstFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
+    public static CountDownTimer countDownTimer;
+   TextView timer;
     public FirstFragment() {
         // Required empty public constructor
     }
@@ -36,7 +39,9 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        View v = inflater.inflate(R.layout.fragment_first, container, false);
+        timer = v.findViewById(R.id.timer);
+        return v;
 
     }
 
@@ -60,6 +65,19 @@ public class FirstFragment extends Fragment {
             }
         };
         splashThread.start();*/
+      countDownTimer = new CountDownTimer(5000,1000) {
+          @Override
+          public void onTick(long millisUntilFinished) {
+              timer.setText(millisUntilFinished/1000 + " Sec wait to load next screen");
+          }
+
+          @Override
+          public void onFinish() {
+
+          }
+      };
+        countDownTimer.start();
+
         final NavController navcontroller = Navigation.findNavController(view);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -70,4 +88,6 @@ public class FirstFragment extends Fragment {
         },5000);
 
     }
-    }
+
+
+}

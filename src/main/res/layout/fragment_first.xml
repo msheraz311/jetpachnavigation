@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:text="Wait 5 second to load next screen"
         android:gravity="center"
+        android:id="@+id/timer"
         android:textStyle="bold"
         android:textSize="18sp"
         />
